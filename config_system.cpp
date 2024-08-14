@@ -116,13 +116,10 @@ namespace configsys
 	}
 
 	bool config_system::open_as_read( std::string_view file ) {
-		//Close any previous stream
-		close( );
+                //Open a new stream for reading
+		m_readStream.open( file.data( ), std::ios::in );
 
-		//Open a new stream for reading
-		m_stream.open( file.data( ), std::ios::in );
-
-		if ( !m_stream.is_open( ) )
+		if ( !m_readStream.is_open( ) )
 			throw std::exception( "config_system::open_as_read: could not open file in read mode" );
 
 		//Parse the file
@@ -131,16 +128,17 @@ namespace configsys
 	}
 
 	bool config_system::open_as_write( std::string_view file ) {
-		//Close any previous stream
-		close( );
+                //Open a new stream for writing
+		m_writeStream.open( file.data( ), std::ios::out );
 
-		//Open a new stream for writing
-		m_stream.open( file.data( ), std::ios::out );
-
-		if ( !m_stream.is_open( ) )
+		if ( !m_writeStream.is_open( ) )
 			throw std::exception( "config_system::open_as_write: could not open file in write mode" );
 
 		return true;
+	}
+
+        bool config_system::open( std::string_view file ) {
+		return open_as_read(file) && open_as_write(file);
 	}
 
 	//This should be used when writing to a file

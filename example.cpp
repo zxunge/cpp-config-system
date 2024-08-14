@@ -1,12 +1,14 @@
 #include "config_system.h"
 #include <iostream>
 
-int main( ) {
-	try {
-		forceinline::config_system config;
+auto main( ) -> int
+{
+	try 
+  {
+		configsys::config_system config;
 
 		//First we save a file
-		if ( config.open_as_write( "example.xml" ) ) {
+		if ( config.open( "example.xml" ) ) {
 			//We create a group (note: use a reference)
 			auto& my_favourites = config.create_group( "my favourites" );
 			
@@ -29,10 +31,8 @@ int main( ) {
 
 			//Save our file
 			config.save( );
-		}
 
-		//Now we read our cool file
-		if ( config.open_as_read( "example.xml" ) ) {
+	      // Now read our config file
 			//Note: no reference here!
 			auto my_favourites = config.get_group( "my favourites" );
 
@@ -49,9 +49,17 @@ int main( ) {
 			//Close our file
 			config.close( );
 		}
-	} catch ( const std::exception& e ) {
+	} 
+  catch ( const std::exception& e ) 
+  {
 		//Catch any exceptions
 		std::cout << e.what( ) << std::endl;
+	}
+
+	std::cin.get( );
+	return 0;
+}
+endl;
 	}
 
 	std::cin.get( );

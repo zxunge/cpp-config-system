@@ -3,8 +3,10 @@
 #include <fstream>
 #include <vector>
 
-namespace forceinline {
-	class element {
+namespace configsys
+{
+	class element 
+  {
 	public:
 		element( ) { }
 		element( std::string_view element_name, bool value ) : m_element_name( element_name )	{ m_element_string = value ? "1" : "0"; }
@@ -27,7 +29,8 @@ namespace forceinline {
 		std::string m_element_name = "", m_element_string = "";
 	};
 
-	class element_group {
+	class element_group 
+  {
 	public:
 		element_group( ) { }
 		element_group( std::string_view name ) : m_group_name( name ) { }
@@ -57,7 +60,8 @@ namespace forceinline {
 		std::vector< element_group > m_element_groups = { };
 	};
 
-	class config_system {
+	class config_system 
+  {
 	public:
 		config_system( ) { }
 		~config_system( );
@@ -85,6 +89,7 @@ namespace forceinline {
 
 		std::vector< element > m_elements = { };
 		std::vector< element_group > m_element_groups = { };
+      
 	};
 
 	std::string get_element_attribute( const std::string& element, const std::string& attribute );

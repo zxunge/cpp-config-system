@@ -2,7 +2,8 @@
 #include <algorithm>
 #include <string>
 
-namespace forceinline {
+namespace configsys
+{
 	//Returns a string which will be written to the config file
 	std::string element::make_string( std::uint32_t indent ) {
 		std::string config_string( indent, '\t' );
@@ -276,4 +277,5 @@ namespace forceinline {
 		
 		return element.substr( value_start + 1, value_end - value_start - 1 );
 	}
+}
 }

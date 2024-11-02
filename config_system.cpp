@@ -138,6 +138,7 @@ namespace configsys
 	}
 
         bool config_system::open( std::string_view file ) {
+		close();
 		return open_as_read(file) && open_as_write(file);
 	}
 
